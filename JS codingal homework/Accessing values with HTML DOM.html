@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Project</title>
+</head>
+<body>
+
+  <h2>Output:</h2>
+  <p id="output"></p>
+
+  <script>
+    // Object
+    var student = {
+      name: "Ishika",
+      grade: "9th"
+    };
+
+    // Accessing object values
+    var studentInfo = "Name: " + student.name + ", Grade: " + student.grade;
+
+    // Array
+    var fruits = ["Apple", "Banana", "Mango"];
+
+    // Accessing using index
+    var firstFruit = "First fruit: " + fruits[0];
+
+    // Using join
+    var allFruits = "All fruits: " + fruits.join(", ");
+
+    // Using pop
+    var removedFruit = fruits.pop();
+    var afterPop = "After pop: " + fruits.join(", ");
+
+    // Final output
+    document.getElementById("output").innerHTML =
+      studentInfo + "<br>" +
+      firstFruit + "<br>" +
+      allFruits + "<br>" +
+      "Removed fruit: " + removedFruit + "<br>" +
+      afterPop;
+  </script>
+
+</body>
+</html>
