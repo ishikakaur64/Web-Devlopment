@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test and Learn</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: lightyellow;
+      color: #222;
+    }
+
+    header {
+      background-color: lightblue;
+      padding: 18px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    nav {
+      background-color: lightgreen;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    nav button {
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    nav button:hover {
+      background-color: green;
+    }
+
+    .section {
+      display: none;
+      padding: 20px;
+      text-align: center;
+      font-size: larger;
+    }
+    h1{
+      font-size:xx-large;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .topic-card {
+      display: inline-block;
+      width: 220px;
+      margin: 14px;
+      padding: 14px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px gray;
+    }
+
+    .start-btn {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+
+    .start-btn:hover { background-color: darkorange; }
+
+    .quiz-area {
+      margin-top: 20px;
+      padding: 16px;
+      background-color: #fff;
+      display: inline-block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px gray;
+      text-align: left;
+      min-width: 320px;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: white;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .option-btn:hover { background-color: #f0f0f0; }
+
+    .score {
+      font-weight: bold;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Test and Learn</header>
+
+  <nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('quizzes')">Quizzes</button>
+    <button onclick="showSection('funfacts')">Fun Facts</button>
+    <button onclick="showSection('leaderboard')">Leaderboard</button>
+  </nav>
+
+  <!-- SECTIONS -->
+  <div id="home" class="section active">
+    <h2>Welcome!</h2>
+    <p>Get ready to challenge yourself with quizzes that are fun, easy, and packed with interesting questions. Whether you want to test your knowledge about India, sports, or just random facts, you’ll find it all here.
+
+Why choose Test and Learn?
+
+Quick and simple quizzes for everyone
+
+Fun facts to surprise and amaze you
+
+A leaderboard to show off your skills and compete with friends
+
+Easy navigation — just click on the topics you like 
+
+Start by clicking Quizzes and pick a topic you like. Don’t forget to check out the Fun Facts section — it’s full of cool information that will make you smarter every day.<br>
+
+<img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUydWxheTQ2cWJvY3MyeHJkNGRrYXI0ejhiNXBiaXFvMWxiYzR4bjQ0ciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6A9hefwTjvCDMURljb/source.gif" height="150px" width="150px" >
+    </p>
+  </div>
+
+  <div id="about" class="section">
+    <h2>About</h2>
+    <p>Test and Learn is a simple, fun, and educational quiz website designed to help you improve your knowledge while having a great time. Whether you’re a student wanting to practice school topics, a quiz lover, or just curious about the world, this site offers quizzes on a variety of interesting topics like India, sports, and random facts.
+
+Our goal is to make learning easy and enjoyable for everyone. You can challenge yourself with quizzes, learn new facts, and even compete on the leaderboard to see how you stack up against others.
+
+We believe that learning should never be boring — so we keep the quizzes short, fun, and full of interesting questions. Explore, test yourself, and keep learning with Test and Learn!
+
+    </p>
+     
+  </div>
+
+  <div id="quizzes" class="section">
+    <h2>Quizzes — choose a topic</h2>
+
+    <div class="topic-card">
+      <h3>India</h3>
+      <p>Easy questions about India.</p>
+      <button class="start-btn" onclick="startQuiz('india')">Start India Quiz</button>
+    </div>
+
+    <div class="topic-card">
+      <h3>Sports</h3>
+      <p>Simple sports questions.</p>
+      <button class="start-btn" onclick="startQuiz('sports')">Start Sports Quiz</button>
+    </div>
+
+    <div class="topic-card">
+      <h3>Random</h3>
+      <p>Fun random questions.</p>
+      <button class="start-btn" onclick="startQuiz('random')">Start Random Quiz</button>
+    </div>
+
+    <!-- quiz will appear here -->
+    <div id="quizArea" style="margin-top: 20px;"></div>
+  </div>
+
+  <div id="funfacts" class="section">
+    <h2>Fun Facts</h2>
+    <ul style="display:inline-block; text-align:left;">
+      <li>Honey never spoils.</li>
+      <li>Octopuses have three hearts.</li>
+      <li>Bananas grow on plants that are giant herbs.</li>
+    </ul>
+  </div>
+
+  <div id="leaderboard" class="section">
+    <h2>Leaderboard</h2>
+    <p>(No records yet — play quizzes to add scores.)</p>
+  </div>
+
+  <script>
+    // --- Simple in-page navigation (no external files) ---
+    function showSection(id) {
+      var sections = document.getElementsByClassName('section');
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].classList.remove('active');
+      }
+      var el = document.getElementById(id);
+      if (el) { el.classList.add('active'); }
+      // clear quiz area when leaving quizzes
+      if (id !== 'quizzes') { document.getElementById('quizArea').innerHTML = ""; }
+    }
+
+    // --- Quiz data (easy, edit anytime) ---
+    var quizzes = {
+      india: [
+        { q: "What is the capital of India?", options: ["Mumbai", "New Delhi", "Kolkata"], correct: 1 },
+        { q: "Which animal is the national animal of India?", options: ["Elephant", "Peacock", "Tiger"], correct: 2 },
+        { q: "Which festival is the festival of lights?", options: ["Holi", "Diwali", "Eid"], correct: 1 }
+      ],
+      sports: [
+        { q: "How many players are on a football (soccer) team on the field?", options: ["9", "10", "11"], correct: 2 },
+        { q: "Which sport uses a bat and ball and has 11 players per team?", options: ["Cricket", "Tennis", "Basketball"], correct: 0 }
+      ],
+      random: [
+        { q: "What color is the sky on a clear day?", options: ["Green", "Blue", "Red"], correct: 1 },
+        { q: "How many legs does a spider have?", options: ["6", "8", "10"], correct: 1 }
+      ]
+    };
+
+    // --- Quiz runtime variables ---
+    var currentTopic = "";
+    var currentIndex = 0;
+    var score = 0;
+
+    function startQuiz(topic) {
+      currentTopic = topic;
+      currentIndex = 0;
+      score = 0;
+      // show quizzes section (in case user came from another section)
+      showSection('quizzes');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      var quizList = quizzes[currentTopic];
+      if (!quizList || currentIndex >= quizList.length) {
+        showResult();
+        return;
+      }
+
+      var item = quizList[currentIndex];
+      var html = "<div class='quiz-area'>";
+      html += "<h3>Question " + (currentIndex + 1) + " of " + quizList.length + "</h3>";
+      html += "<p style='font-weight:bold;'>" + item.q + "</p>";
+
+      for (var i = 0; i < item.options.length; i++) {
+        // create option button; using simple onclick string (no template literals)
+        html += "<button class='option-btn' onclick='checkAnswer(" + i + ")'>" + item.options[i] + "</button>";
+      }
+
+      html += "<div style='margin-top:10px;'><button onclick='skipQuestion()' class='start-btn'>Skip</button></div>";
+      html += "</div>";
+
+      document.getElementById('quizArea').innerHTML = html;
+    }
+
+    function checkAnswer(selected) {
+      var item = quizzes[currentTopic][currentIndex];
+      var feedback = "";
+      if (selected === item.correct) {
+        score++;
+        feedback = "Correct!";
+      } else {
+        feedback = "Wrong! Correct answer: " + item.options[item.correct];
+      }
+      // show small feedback then go to next question after short delay
+      var area = document.getElementById('quizArea');
+      area.innerHTML += "<p style='margin-top:8px; font-weight:bold;'>" + feedback + "</p>";
+      // disable option buttons by re-rendering/ or move on after 800ms
+      currentIndex++;
+      setTimeout(renderQuestion, 800);
+    }
+
+    function skipQuestion() {
+      currentIndex++;
+      renderQuestion();
+    }
+
+    function showResult() {
+      var total = quizzes[currentTopic].length;
+      var html = "<div class='quiz-area'>";
+      html += "<h3>Quiz finished!</h3>";
+      html += "<p class='score'>You scored " + score + " out of " + total + ".</p>";
+      html += "<button class='start-btn' onclick='startQuiz(currentTopic)'>Try Again</button> ";
+      html += "<button class='start-btn' onclick='document.getElementById(\"quizArea\").innerHTML = \"\"'>Close</button>";
+      html += "</div>";
+      document.getElementById('quizArea').innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
