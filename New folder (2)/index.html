@@ -321,12 +321,15 @@ Our website is designed to be a place where learning and fun come together. From
     </ul>
   </div>
 
-  <div id="leaderboard" class="section">
-    <h2>Leaderboard</h2>
-    <p>(No records yet — play quizzes to add scores.)</p>
-  </div>
+<div id="leaderboard" class="section">
+  <h2>Leaderboard 🏆</h2>
+  <ol id="leaderboard-list">
+    <li>No records yet — play a quiz!</li>
+  </ol>
+</div>
 
   <script>
+   
     // --- Simple in-page navigation (no external files) ---
     function showSection(id) {
       var sections = document.getElementsByClassName('section');
@@ -356,11 +359,16 @@ Our website is designed to be a place where learning and fun come together. From
       ],
       TMKOC: [
         { q: "What is the name of Jethalal Gada’s shop?", options: ["Gada electronics", " daya electronics",], correct: 0 },
-        { q: " What is Tappu’s real name in the show?", options: ["tipesh", "tipendra",], correct: 1 }
+        { q: " What is Tappu’s real name in the show?", options: ["tipesh", "tipendra"], correct: 1 },
+        { q: "Who is the leader of Tapu Sena?", options: ["Goli","Tappu","Sonu","Pinku"], correct: 1},
+        { q: "What is Madhvi (Bhide's wife) best known for making?", options: ["Aachar & Papad", "Batata Vada"], correct: 0 },
+        { q: "What is the name of Abdul's shop?", options: ["Abdul's General Store","Abdul's Soda Shop","Abdul's Soda Fountain"], correct: 0}
       ],
       Doraemon: [
         { q: "What is Doraemon's primary color?", options: [" Green", "Red","Blue"], correct: 2 },
-        { q: " What is the name of Doraemon's best friend?", options: ["Nobita", "Suneo","Gian"], correct: 0 }
+        { q: " What is the name of Doraemon's best friend?", options: ["Nobita", "Suneo","Gian"], correct: 0 },
+        { q: "What gadget does Doraemon often use to travel through time?", options: ["Anywhere Door", "Time Machine", "Bamboo Copter", " Memory Bread"], correct: 1},
+        { q: "What is Doraemon afraid of?", options: ["Heights","Mice","Water","Darkness"], correct: 1}
       ],
       food: [
   { q: "Which fruit is known as the 'king of fruits' in India?", options: ["Mango", "Apple", "Banana"], correct: 0 },
