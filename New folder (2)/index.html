@@ -206,6 +206,78 @@ Our website is designed to be a place where learning and fun come together. From
       <button class="start-btn" onclick="startQuiz('random')">Start Random Quiz</button>
     </div>
 
+    <div class="topic-card">
+      <h3>TMKOC</h3>
+      <p>Toughest quiz on TMKOC.</p>
+      <button class="start-btn" onclick="startQuiz('TMKOC')">Start TMKOC Quiz</button>
+    </div>
+
+    <div class="topic-card">
+  <h3>Doraemon</h3>
+  <p>Fun quiz on Doraemon cartoon.</p>
+  <button class="start-btn" onclick="startQuiz('Doraemon')">Start Doraemon Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Food</h3>
+  <p>Easy questions about food.</p>
+  <button class="start-btn" onclick="startQuiz('food')">Start Food Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Science</h3>
+  <p>Difficult science questions.</p>
+  <button class="start-btn" onclick="startQuiz('science')">Start Science Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Countries</h3>
+  <p>Questions about countries of the world.</p>
+  <button class="start-btn" onclick="startQuiz('countries')">Start Countries Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>World Capitals</h3>
+  <p>Difficult questions on capitals of countries.</p>
+  <button class="start-btn" onclick="startQuiz('worldcapitals')">Start World Capitals Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Emoji Quiz</h3>
+  <p>Guess the answer from emojis!</p>
+  <button class="start-btn" onclick="startQuiz('emoji')">Start Emoji Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Riddles</h3>
+  <p>Tricky riddles to test your brain!</p>
+  <button class="start-btn" onclick="startQuiz('riddles')">Start Riddles Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Logic Trick Quiz</h3>
+  <p>Test your brain with tricky questions!</p>
+  <button class="start-btn" onclick="startQuiz('logicTricks')">Start Logic Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Sound Quiz</h3>
+  <p>Guess the animal or thing from its sound!</p>
+  <button class="start-btn" onclick="startQuiz('sounds')">Start Sound Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Funny Jokes Quiz 😂</h3>
+  <p>Laugh while you answer these silly questions!</p>
+  <button class="start-btn" onclick="startQuiz('funnyJokes')">Start Funny Quiz</button>
+</div>
+
+<div class="topic-card">
+  <h3>Music Quiz 🎶</h3>
+  <p>Check your knowledge about music and instruments!</p>
+  <button class="start-btn" onclick="startQuiz('music')">Start Music Quiz</button>
+</div>
+
     <!-- quiz will appear here -->
     <div id="quizArea" style="margin-top: 20px;"></div>
   </div>
@@ -231,14 +303,14 @@ Our website is designed to be a place where learning and fun come together. From
 <li>Rubber bands last longer when refrigerated.</li>
 <li>There are 293 ways to make change for a dollar.</li>
 <li>The average person's left hand does 56% of the typing (when using the proper position of the hands on the keyboard; Hunting and pecking doesn't count!).</li>
-<li>A shark is the only known fish that can blink with both eyes.</li>
+<li>A shark is the only known fish that can blink with both eyes.<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzqzwGd6QoARBHy2x5-9LQlsyMFZ12D5WxSA&s" height="50px" width="50px"></li>
 <li>The longest one-syllable words in the English language are "scraunched" and "strengthed." Some suggest that "squirreled" could be included, but squirrel is intended to be pronounced as two syllables (squir-rel) according to most dictionaries. "Screeched" and "strengths" are two other long one-syllable words, but they only have 9 letters.</li>
 <li>"Dreamt" is the only English word that ends in the letters "mt".</li>
 <li>Almonds are a member of the peach family.</li>
 <li>Maine is the only state that has a one-syllable name.</li>
 <li>There are only four words in the English language which end in "dous": tremendous, horrendous, stupendous, and hazardous.</li>
 <li>Los Angeles' full name is "El Pueblo de Nuestra Senora la Reina de los Angeles de Porciuncula"</li>
-<li>A cat has 32 muscles in each ear.</li>
+<li>A cat has 32 muscles in each ear.<img src="https://cdn-icons-png.flaticon.com/512/3479/3479853.png" height="50px" width="50px"></li>
 <li>An ostrich's eye is bigger than its brain.</li>
 <li>Tigers have striped skin, not just striped fur.</li>
 <li>In many advertisements, the time displayed on a watch is 10:10.</li>
@@ -281,7 +353,86 @@ Our website is designed to be a place where learning and fun come together. From
       random: [
         { q: "What color is the sky on a clear day?", options: ["Green", "Blue", "Red"], correct: 1 },
         { q: "How many legs does a spider have?", options: ["6", "8", "10"], correct: 1 }
-      ]
+      ],
+      TMKOC: [
+        { q: "What is the name of Jethalal Gada’s shop?", options: ["Gada electronics", " daya electronics",], correct: 0 },
+        { q: " What is Tappu’s real name in the show?", options: ["tipesh", "tipendra",], correct: 1 }
+      ],
+      Doraemon: [
+        { q: "What is Doraemon's primary color?", options: [" Green", "Red","Blue"], correct: 2 },
+        { q: " What is the name of Doraemon's best friend?", options: ["Nobita", "Suneo","Gian"], correct: 0 }
+      ],
+      food: [
+  { q: "Which fruit is known as the 'king of fruits' in India?", options: ["Mango", "Apple", "Banana"], correct: 0 },
+  { q: "What is the main ingredient of bread?", options: ["Rice", "Wheat", "Corn"], correct: 1 },
+  { q: "Which drink is made from cocoa beans?", options: ["Hot Chocolate", "Tea", "Coffee"], correct: 0 }
+],
+science: [
+  { q: "What is the chemical symbol of Gold?", options: ["Au", "Ag", "Go"], correct: 0 },
+  { q: "Which planet is known as the 'Red Planet'?", options: ["Venus", "Mars", "Jupiter"], correct: 1 },
+  { q: "What gas do humans exhale?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen"], correct: 1 },
+  { q: "Who proposed the theory of relativity?", options: ["Newton", "Einstein", "Galileo"], correct: 1 },
+  { q: "What is the boiling point of water at sea level?", options: ["100°C", "90°C", "110°C"], correct: 0 }
+],
+countries: [
+  { q: "Which country is the largest in the world by area?", options: ["China", "Russia", "Canada"], correct: 1 },
+  { q: "Which country has the most population?", options: ["India", "USA", "China"], correct: 2 },
+  { q: "Which country is called the 'Land of the Rising Sun'?", options: ["Japan", "Korea", "Thailand"], correct: 0 },
+  { q: "Which country gifted the Statue of Liberty to the USA?", options: ["France", "UK", "Germany"], correct: 0 },
+  { q: "Which country is famous for pizza and pasta?", options: ["Spain", "Italy", "Mexico"], correct: 1 }
+],
+worldcapitals: [
+  { q: "What is the capital of Australia?", options: ["Sydney", "Canberra", "Melbourne"], correct: 1 },
+  { q: "What is the capital of Canada?", options: ["Toronto", "Vancouver", "Ottawa"], correct: 2 },
+  { q: "What is the capital of Japan?", options: ["Seoul", "Tokyo", "Kyoto"], correct: 1 },
+  { q: "What is the capital of South Africa?", options: ["Pretoria", "Cape Town", "Both A and B"], correct: 2 },
+  { q: "What is the capital of Brazil?", options: ["Rio de Janeiro", "Brasília", "São Paulo"], correct: 1 }
+],
+emoji: [
+  { q: "🍎🍌🍇 What are these?", options: ["Vegetables", "Fruits", "Snacks"], correct: 1 },
+  { q: "⚽🏀🎾 These are types of?", options: ["Sports Balls", "Fruits", "Toys"], correct: 0 },
+  { q: "🐶🐱🐹 Which animals are shown?", options: ["Pets", "Wild Animals", "Birds"], correct: 0 },
+  { q: "☀🌧❄ These symbols show?", options: ["Food", "Weather", "Festivals"], correct: 1 },
+  { q: "📚✏🏫 These are related to?", options: ["School", "Sports", "Hospital"], correct: 0 }
+],
+riddles: [
+  { q: "What has to be broken before you can use it?", options: ["Egg", "Glass", "Stick"], correct: 0 },
+  { q: "I’m tall when I’m young and short when I’m old. What am I?", options: ["Tree", "Candle", "Pencil"], correct: 1 },
+  { q: "What gets wetter the more it dries?", options: ["Sponge", "Towel", "Rain"], correct: 1 },
+  { q: "What has a face and two hands but no arms or legs?", options: ["Robot", "Clock", "Doll"], correct: 1 },
+  { q: "What has a head and a tail but no body?", options: ["Snake", "Coin", "Lizard"], correct: 1 },
+  { q: "I go up but never come down. What am I?", options: ["Age", "Smoke", "Balloon"], correct: 0 },
+  { q: "The more you take, the more you leave behind. What are they?", options: ["Memories", "Footsteps", "Steps"], correct: 1 }
+],
+logicTricks: [
+  { q: "A farmer has 17 goats. All but 9 run away. How many are left?", options: ["9", "8", "17"], correct: 0 },
+  { q: "If you have one match and enter a dark room with a lamp, candle, and fireplace, what do you light first?", options: ["Lamp", "Candle", "Match"], correct: 2 },
+  { q: "Some months have 30 days, some have 31. How many have 28?", options: ["1", "12", "6"], correct: 1 },
+  { q: "If you take 2 apples from 3 apples, how many do you have?", options: ["1", "2", "3"], correct: 1 },
+  { q: "The more of me you take, the more you leave behind. What am I?", options: ["Footsteps", "Time", "Shadow"], correct: 0 }
+],
+sounds: [
+  { q: "Which animal makes the sound 'Moo'?", options: ["Cow", "Dog", "Sheep"], correct: 0 },
+  { q: "Which animal makes the sound 'Meow'?", options: ["Cat", "Goat", "Lion"], correct: 0 },
+  { q: "Which animal makes the sound 'Neigh'?", options: ["Horse", "Elephant", "Monkey"], correct: 0 },
+  { q: "Which vehicle goes 'Vroom'?", options: ["Car", "Bicycle", "Train"], correct: 0 },
+  { q: "Which bird says 'Cuckoo'?", options: ["Crow", "Cuckoo Bird", "Parrot"], correct: 1 },
+  { q: "Which clock sound is written as 'Tick-Tock'?", options: ["Clock", "Drum", "Bell"], correct: 0 }
+],
+funnyJokes: [
+  { q: "Why did the computer go to the doctor?", options: ["It caught a virus 🤒", "It needed an update", "It was tired"], correct: 0 },
+  { q: "Why don’t scientists trust atoms?", options: ["They are too small", "They make up everything 😆", "They disappear"], correct: 1 },
+  { q: "Why did the math book look sad?", options: ["It had too many problems 😂", "It was torn", "It was boring"], correct: 0 },
+  { q: "Why did the bicycle fall over?", options: ["It was too tired 🚲😴", "It was broken", "It was heavy"], correct: 0 },
+  { q: "Why can’t your nose be 12 inches long?", options: ["Because then it would be a foot 👃👣", "It would look funny", "It can’t grow"], correct: 0 }
+],
+music: [
+  { q: "Which instrument has black and white keys?", options: ["Guitar", "Piano", "Flute"], correct: 1 },
+  { q: "Which singer is called the 'King of Pop'?", options: ["Elvis Presley", "Michael Jackson", "Justin Bieber"], correct: 1 },
+  { q: "Which instrument is played by blowing air?", options: ["Drums", "Flute", "Guitar"], correct: 1 },
+  { q: "Which instrument is also called a 'violin's big brother'?", options: ["Cello", "Guitar", "Trumpet"], correct: 0 },
+  { q: "Which Indian instrument is played by Bismillah Khan?", options: ["Tabla", "Sitar", "Shehnai"], correct: 2 }
+]
     };
 
     // --- Quiz runtime variables ---
