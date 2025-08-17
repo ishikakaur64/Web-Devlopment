@@ -134,6 +134,11 @@
     <button onclick="showSection('quizzes')">Quizzes</button>
     <button onclick="showSection('funfacts')">Fun Facts</button>
     <button onclick="showSection('leaderboard')">Leaderboard</button>
+    <button onclick="showSection('addquiz')">➕ Add Quiz</button>
+    <button onclick="showSection('howtoplay')">How to Play</button>
+    
+
+
   </nav>
 
   <!-- SECTIONS -->
@@ -328,6 +333,39 @@ Our website is designed to be a place where learning and fun come together. From
   </ol>
 </div>
 
+<div id="addquiz" class="section">
+    <h2>Create Your Own Quiz</h2>
+    <div class="quiz-area">
+      <p><b>Question:</b><br><input type="text" id="customQ" style="width:100%;"></p>
+      <p><b>Options (comma separated):</b><br><input type="text" id="customOptions" style="width:100%;"></p>
+      <p><b>Correct Answer Index (0,1,2...):</b><br><input type="number" id="customCorrect" min="0"></p>
+      <button class="start-btn" onclick="saveCustomQuiz()">Save & Start Quiz</button>
+    </div>
+  </div>
+
+  <div id="howtoplay" class="section">
+  <h2>How to Play</h2>
+  <div class="quiz-area">
+    <p>Welcome to the Quiz Game! 🎉 Here’s how to play:</p>
+    <ul>
+      <li>Choose a topic from the <b>Quizzes</b> section.</li>
+      <li>Read the question carefully and select the correct answer.</li>
+      <li>You’ll get instant feedback: ✅ Correct or ❌ Incorrect.</li>
+      <li>Your score will be shown at the end of the quiz.</li>
+      <li>You can also try again or pick a new quiz.</li>
+      <li>Go to <b>Leaderboard</b> to see your best scores.</li>
+      <li>Want to create your own quiz? Use the <b>Add Quiz</b> button!</li>
+    </ul>
+    <p><b>Tip:</b> Correct Answer Index starts from 0 (first option).</p>
+  </div>
+</div>
+
+
+
+
+
+  <a href="index.html" class="button-class">Click Me</a>
+
   <script>
    
     // --- Simple in-page navigation (no external files) ---
@@ -512,6 +550,62 @@ music: [
       html += "</div>";
       document.getElementById('quizArea').innerHTML = html;
     }
+     // Save custom quiz
+    function saveCustomQuiz() {
+      var q = document.getElementById("customQ").value;
+      var opts = document.getElementById("customOptions").value.split(",");
+      var correct = parseInt(document.getElementById("customCorrect").value);
+
+      if (!q || opts.length < 2 || isNaN(correct) || correct < 0 || correct >= opts.length) {
+        alert("Please fill in all fields correctly!");
+        return;
+      }
+
+      quizzes["custom"] = [{ q: q, options: opts, correct: correct }];
+      startQuiz("custom");
+    }
+
+    // Start Practice Mode
+function startPractice(topic) {
+  currentTopic = topic;
+  currentQuestion = 0;
+  score = 0;
+
+  var quizArea = document.querySelector("#practice .quiz-area");
+  quizArea.innerHTML = "<h3>Practice: " + topic + "</h3>";
+  showPracticeQuestion();
+}
+
+function showPracticeQuestion() {
+  var quizArea = document.querySelector("#practice .quiz-area");
+  var q = quizzes[currentTopic][currentQuestion];
+
+  var html = "<p><b>Q" + (currentQuestion+1) + ".</b> " + q.q + "</p>";
+  for (var i=0; i<q.options.length; i++) {
+    html += "<button class='option-btn' onclick='checkPracticeAnswer(" + i + ")'>" + q.options[i] + "</button><br>";
+  }
+  quizArea.innerHTML = html;
+}
+
+function checkPracticeAnswer(choice) {
+  var q = quizzes[currentTopic][currentQuestion];
+  var quizArea = document.querySelector("#practice .quiz-area");
+
+  if (choice === q.correct) {
+    quizArea.innerHTML += "<p style='color:green;'>✅ Correct!</p>";
+  } else {
+    quizArea.innerHTML += "<p style='color:red;'>❌ Wrong! Correct answer: " + q.options[q.correct] + "</p>";
+  }
+
+  currentQuestion++;
+  if (currentQuestion < quizzes[currentTopic].length) {
+    setTimeout(showPracticeQuestion, 1200);
+  } else {
+    quizArea.innerHTML += "<p><b>Practice Finished!</b></p>";
+    quizArea.innerHTML += "<button class='start-btn' onclick='startPractice(currentTopic)'>Try Again</button>";
+  }
+}
+
   </script>
 
 </body>
