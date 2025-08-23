@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,7 +137,12 @@
     <button onclick="showSection('leaderboard')">Leaderboard</button>
     <button onclick="showSection('addquiz')">➕ Add Quiz</button>
     <button onclick="showSection('howtoplay')">How to Play</button>
-    
+    <button onclick="showSection('brainquiz')">Brain Quiz</button>
+<button onclick="showSection('picquiz')">Picture Quiz</button>
+    <button onclick="showSection('guessgame')">Guess number</button>
+
+
+
 
 
   </nav>
@@ -187,7 +193,8 @@ We believe that learning should never be boring — so we keep the quizzes short
 Our website is designed to be a place where learning and fun come together. From exciting quizzes that challenge your knowledge to engaging chat features that let you connect and share ideas, every part of this site is built to keep you entertained and informed. Whether you’re here to test yourself, explore new topics, or simply enjoy an interactive experience, we’ve got something for everyone. The goal is to make learning feel less like a task and more like an adventure, where each click brings you closer to discovering something new. We believe that curiosity should be celebrated, creativity should be encouraged, and knowledge should be shared — and that’s exactly what this website is all about.
 
     </p>
-     
+    <img src="https://i0.wp.com/altc.alt.ac.uk/blog/wp-content/uploads/sites/1112/2022/08/Blog-Cover-Guidlines.png?resize=707%2C409&ssl=1" height="350px" width="350px">
+    
   </div>
 
   <div id="quizzes" class="section">
@@ -333,6 +340,7 @@ Our website is designed to be a place where learning and fun come together. From
   </ol>
 </div>
 
+
 <div id="addquiz" class="section">
     <h2>Create Your Own Quiz</h2>
     <div class="quiz-area">
@@ -340,9 +348,9 @@ Our website is designed to be a place where learning and fun come together. From
       <p><b>Options (comma separated):</b><br><input type="text" id="customOptions" style="width:100%;"></p>
       <p><b>Correct Answer Index (0,1,2...):</b><br><input type="number" id="customCorrect" min="0"></p>
       <button class="start-btn" onclick="saveCustomQuiz()">Save & Start Quiz</button>
+     
     </div>
   </div>
-
   <div id="howtoplay" class="section">
   <h2>How to Play</h2>
   <div class="quiz-area">
@@ -361,7 +369,32 @@ Our website is designed to be a place where learning and fun come together. From
 </div>
 
 
+<div id="brainquiz" class="section">
+  <h2>🧠 Brain Quiz</h2>
+  <div class="quiz-area">
+    <button class="start-btn" onclick="startBrainQuiz()">Start Brain Quiz</button>
+    <div id="brainQuizArea" style="margin-top:20px;"></div>
+  </div>
+</div>
 
+<div id="picquiz" class="section">
+  <h2>🖼️ Picture Quiz</h2>
+  <div class="quiz-area">
+    <button class="start-btn" onclick="startPicQuiz()">Start Picture Quiz</button>
+    <div id="picQuizArea" style="margin-top:20px;"></div>
+  </div>
+</div>
+
+
+<div id="guessgame" class="section">
+  <h2>🎯 Guess Game</h2>
+  <div class="quiz-area">
+    <p>Try to guess the correct number between 1 and 10!</p>
+    <input type="number" id="guessInput" style="width:100%; padding:6px;" placeholder="Enter your guess">
+    <button class="start-btn" onclick="checkGuess()">Submit Guess</button>
+    <div id="guessResult" style="margin-top:10px; font-weight:bold;"></div>
+  </div>
+</div>
 
 
   <a href="index.html" class="button-class">Click Me</a>
@@ -549,6 +582,9 @@ music: [
       html += "<button class='start-btn' onclick='document.getElementById(\"quizArea\").innerHTML = \"\"'>Close</button>";
       html += "</div>";
       document.getElementById('quizArea').innerHTML = html;
+      // Add to leaderboard
+  var playerName = prompt("Enter your name for the leaderboard:");
+  addToLeaderboard(playerName || "Player", score);
     }
      // Save custom quiz
     function saveCustomQuiz() {
@@ -565,46 +601,241 @@ music: [
       startQuiz("custom");
     }
 
-    // Start Practice Mode
-function startPractice(topic) {
-  currentTopic = topic;
-  currentQuestion = 0;
-  score = 0;
 
-  var quizArea = document.querySelector("#practice .quiz-area");
-  quizArea.innerHTML = "<h3>Practice: " + topic + "</h3>";
-  showPracticeQuestion();
+
+
+
+
+
+
+   
+
+var brainQuestions = [
+  { q: "I speak without a mouth and hear without ears. What am I?", options: ["Echo", "Shadow", "Wind", "Fire"], correct: 0 },
+  { q: "What comes once in a minute, twice in a moment, but never in a thousand years?", options: ["Letter M", "Time", "Clock", "Sun"], correct: 0 },
+  { q: "The more you take, the more you leave behind. What are they?", options: ["Steps", "Memories", "Shadows", "Coins"], correct: 0 },
+  { q: "What has keys but can’t open locks?", options: ["Piano", "Map", "Keyboard", "Door"], correct: 0 },
+  { q: "What has hands but can’t clap?", options: ["Clock", "Robot", "Glove", "Statue"], correct: 0 },
+  { q: "What gets wetter the more it dries?", options: ["Towel", "Sponge", "Rain", "Soap"], correct: 0 },
+  { q: "What has a face and two hands but no arms or legs?", options: ["Clock", "Watch", "Mirror", "Calendar"], correct: 0 },
+  { q: "What has to be broken before you can use it?", options: ["Egg", "Glass", "Nut", "Code"], correct: 0 },
+  { q: "What goes up but never comes down?", options: ["Age", "Balloon", "Smoke", "Bird"], correct: 0 },
+  { q: "The more you take from me, the bigger I get. What am I?", options: ["Hole", "Shadow", "Space", "Puzzle"], correct: 0 },
+  { q: "I’m tall when I’m young, and short when I’m old. What am I?", options: ["Candle", "Pencil", "Tree", "Shadow"], correct: 0 },
+  { q: "What has many teeth but can’t bite?", options: ["Comb", "Saw", "Zipper", "Gear"], correct: 0 },
+  { q: "I have branches but no leaves, trunk, or fruit. What am I?", options: ["Bank", "River", "Family", "Tree"], correct: 0 },
+  { q: "What has a neck but no head?", options: ["Bottle", "Shirt", "Lamp", "Guitar"], correct: 0 },
+  { q: "What has one eye but cannot see?", options: ["Needle", "Storm", "Cyclone", "Potato"], correct: 0 },
+  { q: "What has legs but doesn’t walk?", options: ["Table", "Chair", "Bed", "Stool"], correct: 0 },
+  { q: "What belongs to you but other people use it more?", options: ["Name", "Money", "Time", "House"], correct: 0 },
+  { q: "What has an endless supply of letters but starts empty?", options: ["Mailbox", "Book", "Keyboard", "Dictionary"], correct: 0 },
+  { q: "What can travel around the world while staying in the corner?", options: ["Stamp", "Compass", "Map", "Sun"], correct: 0 },
+  { q: "The more you share me, the less I am. What am I?", options: ["Secret", "Happiness", "Food", "Time"], correct: 0 }
+];
+
+var brainIndex = 0;
+var brainScore = 0;
+
+function startBrainQuiz() {
+  brainIndex = 0;
+  brainScore = 0;
+  renderBrainQuestion();
 }
 
-function showPracticeQuestion() {
-  var quizArea = document.querySelector("#practice .quiz-area");
-  var q = quizzes[currentTopic][currentQuestion];
-
-  var html = "<p><b>Q" + (currentQuestion+1) + ".</b> " + q.q + "</p>";
-  for (var i=0; i<q.options.length; i++) {
-    html += "<button class='option-btn' onclick='checkPracticeAnswer(" + i + ")'>" + q.options[i] + "</button><br>";
-  }
-  quizArea.innerHTML = html;
-}
-
-function checkPracticeAnswer(choice) {
-  var q = quizzes[currentTopic][currentQuestion];
-  var quizArea = document.querySelector("#practice .quiz-area");
-
-  if (choice === q.correct) {
-    quizArea.innerHTML += "<p style='color:green;'>✅ Correct!</p>";
+function renderBrainQuestion() {
+  if (brainIndex < brainQuestions.length) {
+    var q = brainQuestions[brainIndex];
+    var html = "<p style='font-weight:bold;'>" + (brainIndex+1) + ". " + q.q + "</p>";
+    for (var i = 0; i < q.options.length; i++) {
+      html += "<button class='option-btn' onclick='checkBrainAnswer(" + i + ")'>" + q.options[i] + "</button>";
+    }
+    document.getElementById("brainQuizArea").innerHTML = html;
   } else {
-    quizArea.innerHTML += "<p style='color:red;'>❌ Wrong! Correct answer: " + q.options[q.correct] + "</p>";
-  }
-
-  currentQuestion++;
-  if (currentQuestion < quizzes[currentTopic].length) {
-    setTimeout(showPracticeQuestion, 1200);
-  } else {
-    quizArea.innerHTML += "<p><b>Practice Finished!</b></p>";
-    quizArea.innerHTML += "<button class='start-btn' onclick='startPractice(currentTopic)'>Try Again</button>";
+    showBrainResult();
   }
 }
+
+function checkBrainAnswer(selected) {
+  if (selected === brainQuestions[brainIndex].correct) {
+    brainScore++;
+  }
+  brainIndex++;
+  renderBrainQuestion();
+}
+
+function showBrainResult() {
+  var html = "<h3>Brain Quiz Finished!</h3>";
+  html += "<p class='score'>You scored " + brainScore + " out of " + brainQuestions.length + ".</p>";
+  html += "<button class='start-btn' onclick='startBrainQuiz()'>Try Again</button>";
+  document.getElementById("brainQuizArea").innerHTML = html;
+}
+
+
+
+
+
+
+
+
+var picQuestions = [
+  { 
+    q: "Which animal is shown in the picture?", 
+    img: "https://cdn-icons-png.flaticon.com/512/5536/5536604.png", 
+    options: ["Tiger", "Lion", "Leopard", "Jaguar"], 
+    correct: 1 
+  },
+  { 
+    q: "Which fruit is this?", 
+    img: "https://cdn-icons-png.flaticon.com/512/2909/2909843.png", 
+    options: ["Apple", "Mango", "Tomato", "Cherry"], 
+    correct: 1
+  },
+  { 
+    q: "What country’s flag is this?", 
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMBGGVjy-U2x3rLxZfFLfsN58R2dznhEuh8Q&s", 
+    options: ["India", "Ireland", "Italy", "Iran"], 
+    correct: 3
+  },
+  { 
+    q: "Which famous building is this?", 
+    img: "https://cdn-icons-png.flaticon.com/512/444/444688.png", 
+    options: ["Eiffel Tower", "Statue of Liberty", "Big Ben", "Colosseum"], 
+    correct: 1
+  },
+  { 
+    q: "Which planet is shown?", 
+    img: "https://cdn-icons-png.flaticon.com/512/167/167362.png", 
+    options: ["Mars", "Earth", "Jupiter", "Venus"], 
+    correct: 2
+  }
+];
+
+var picIndex = 0;
+var picScore = 0;
+
+function startPicQuiz() {
+  picIndex = 0;
+  picScore = 0;
+  renderPicQuestion();
+}
+
+function renderPicQuestion() {
+  if (picIndex < picQuestions.length) {
+    var q = picQuestions[picIndex];
+    var html = "<p style='font-weight:bold;'>" + (picIndex+1) + ". " + q.q + "</p>";
+    html += "<img src='" + q.img + "' alt='Question Image' style='max-width:200px; display:block; margin:10px auto;'>";
+    for (var i = 0; i < q.options.length; i++) {
+      html += "<button class='option-btn' onclick='checkPicAnswer(" + i + ")'>" + q.options[i] + "</button>";
+    }
+    document.getElementById("picQuizArea").innerHTML = html;
+  } else {
+    showPicResult();
+  }
+}
+
+function checkPicAnswer(selected) {
+  if (selected === picQuestions[picIndex].correct) {
+    picScore++;
+  }
+  picIndex++;
+  renderPicQuestion();
+}
+
+function showPicResult() {
+  var html = "<h3>Picture Quiz Finished!</h3>";
+  html += "<p class='score'>You scored " + picScore + " out of " + picQuestions.length + ".</p>";
+  html += "<button class='start-btn' onclick='startPicQuiz()'>Try Again</button>";
+  document.getElementById("picQuizArea").innerHTML = html;
+}
+
+
+
+
+
+var secretNumber = Math.floor(Math.random() * 10) + 1;
+
+function checkGuess() {
+  var guess = parseInt(document.getElementById('guessInput').value);
+  var result = document.getElementById('guessResult');
+
+  if (!guess || guess < 1 || guess > 10) {
+    result.innerText = "Please enter a number between 1 and 10.";
+    return;
+  }
+
+  if (guess === secretNumber) {
+    result.innerText = "🎉 Correct! You guessed the number!";
+    secretNumber = Math.floor(Math.random() * 10) + 1; // new number
+  } else if (guess < secretNumber) {
+    result.innerText = "⬆️ Too low! Try again.";
+  } else {
+    result.innerText = "⬇️ Too high! Try again.";
+  }
+}
+
+
+var guessAttempts = 0; // track attempts for leaderboard
+
+function checkGuess() {
+  var guess = parseInt(document.getElementById('guessInput').value);
+  var result = document.getElementById('guessResult');
+  guessAttempts++; // count every attempt
+
+  if (!guess || guess < 1 || guess > 10) {
+    result.innerText = "Please enter a number between 1 and 10.";
+    return;
+  }
+
+  if (guess === secretNumber) {
+    result.innerHTML = "🎉 Correct! You guessed the number in " + guessAttempts + " attempt(s)!";
+    addToLeaderboard(guessAttempts); // record score
+    guessAttempts = 0; // reset attempts
+    secretNumber = Math.floor(Math.random() * 10) + 1; // new number
+  } else if (guess < secretNumber) {
+    result.innerText = "⬆️ Too low! Try again.";
+  } else {
+    result.innerText = "⬇️ Too high! Try again.";
+  }
+}
+
+
+
+// Leaderboard data
+var leaderboard = [];
+
+// Add a score to the leaderboard
+function addToLeaderboard(name, score) {
+  leaderboard.push({ name: name, score: score });
+  updateLeaderboardDisplay();
+}
+
+// Render leaderboard on the page
+function updateLeaderboardDisplay() {
+  var list = document.getElementById("leaderboard-list");
+  if (!list) return;
+
+  // Clear the list
+  list.innerHTML = "";
+
+  if (leaderboard.length === 0) {
+    list.innerHTML = "<li>No records yet — play a quiz!</li>";
+    return;
+  }
+
+  // Sort by score descending
+  leaderboard.sort((a, b) => b.score - a.score);
+
+  // Add each record
+  leaderboard.forEach(function(record) {
+    var li = document.createElement("li");
+    li.textContent = record.name + " — " + record.score;
+    list.appendChild(li);
+  });
+}
+
+
+
+
 
   </script>
 
